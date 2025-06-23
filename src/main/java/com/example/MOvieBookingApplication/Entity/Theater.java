@@ -21,5 +21,8 @@ public class Theater {
 
     @OneToMany(mappedBy ="theater" , fetch = FetchType.LAZY)
     private List<Show> show;
+
+
+
 }
 
