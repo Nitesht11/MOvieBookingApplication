@@ -4,6 +4,7 @@ import com.example.MOvieBookingApplication.DTO.LoginRequestDTO;
 import com.example.MOvieBookingApplication.DTO.LoginResponseDTO;
 import com.example.MOvieBookingApplication.DTO.RegisterRequestDTO;
 import com.example.MOvieBookingApplication.Entity.User;
+import com.example.MOvieBookingApplication.JWT.JWTService;
 import com.example.MOvieBookingApplication.Respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +20,7 @@ public class AuthenticationService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private JwtService jwtService;
+    private JWTService jwtService;
     @Autowired
     private AuthenticationManager authenticationManager;   // this pack is user  authen jwt token//
 

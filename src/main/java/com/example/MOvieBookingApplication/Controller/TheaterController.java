@@ -20,7 +20,7 @@ public class TheaterController {
      public ResponseEntity<Theater> addTheatre( @RequestBody TheaterDTO theaterDTO){
          return ResponseEntity.ok(theaterService.addTheater(theaterDTO));
      }
-     @GetMapping("/getTheaterByLoaction")
+     @GetMapping("/getTheaterByLocation")
      public ResponseEntity<List<Theater>> getTheaterByLocation(@RequestParam String location){
          return   ResponseEntity.ok(theaterService.getTheaterByLocation(location));
      }

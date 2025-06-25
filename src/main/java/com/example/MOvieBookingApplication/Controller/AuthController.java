@@ -18,7 +18,6 @@ public class AuthController {
 
     private AuthenticationService authenticationService;
 
-
     @PostMapping("/registerNormalUser")
     public ResponseEntity<User> registerNormalUser(@RequestBody RegisterRequestDTO registerRequestDTO) {
         return ResponseEntity.ok(authenticationService.registerNormalUser(registerRequestDTO));

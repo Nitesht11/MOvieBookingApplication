@@ -20,14 +20,14 @@ import java.util.stream.Collectors;
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
-    private UserRepository userRepository;
+     UserRepository userRepository;
 
     @Autowired
     private JWTService jwtService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-       final  String authHeader= request.getHeader("Authorization");
+       final  String authHeader= request.getHeader("Authorization");// to get header of token//
        final String jwtToken;
        final String username;
 
