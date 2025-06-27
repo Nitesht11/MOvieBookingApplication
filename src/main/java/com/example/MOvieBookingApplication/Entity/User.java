@@ -1,9 +1,6 @@
 package com.example.MOvieBookingApplication.Entity;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,10 +14,12 @@ import java.util.stream.Collectors;
 
 @Entity
 @Data
-@Table(name ="Users")
+@Table(name ="users")
 public class User implements UserDetails {
 
-    private  Long userId;
+    @Id
+    @GeneratedValue  (strategy = GenerationType.IDENTITY)
+    private  Long id;
     private  String username;
     private   String email;
     private    String  password;
@@ -28,10 +27,25 @@ public class User implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)  // because we want role everytime user is used//
     private Set<String> roles;
 
+    @OneToMany (fetch = FetchType.EAGER)
+    @JoinColumn(name= "booking_id",nullable = false )
+    private List<Booking> booking ;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {// get authority meth converts role var in authority //
         return roles.stream ()
                 .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toCollection());
+                .collect(Collectors.toList());
     }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
 }

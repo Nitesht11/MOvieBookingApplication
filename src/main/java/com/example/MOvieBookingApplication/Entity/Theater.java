@@ -10,7 +10,6 @@ import java.util.List;
 
 public class Theater {
 
-
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;

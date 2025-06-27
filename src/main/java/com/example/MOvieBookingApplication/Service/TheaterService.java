@@ -28,11 +28,11 @@ public class TheaterService {
          return  theaterRepository.save(theater);
     }
 
-    public List<Theater> getTheaterByLocation (String location){
-       Optional<List<Theater>> listOfTheaterBox = theaterRepository.findByLocation(location);
+    public List<Theater> getTheaterByLocation (String theaterLocation){
+       Optional<List<Theater>> listOfTheaterBox = theaterRepository.findByLocation(theaterLocation);
        if(listOfTheaterBox.isPresent()){
            return listOfTheaterBox.get();
-       } else throw new RuntimeException("No theaters founds for this location"+ location);
+       } else throw new RuntimeException("No theaters founds for this location"+ theaterLocation);
     }
 
      public Theater  updateTheater ( Long id, TheaterDTO theaterDTO){

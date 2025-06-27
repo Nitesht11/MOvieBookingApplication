@@ -37,7 +37,7 @@ public class MovieService {
 
     }
     public List<Movie> getMovieByLanguage(String language) {
-        Optional<List<Movie>> listOfMovieBox = movieRepository.findBylanguage(language);
+        Optional<List<Movie>> listOfMovieBox = movieRepository.findByLanguage(language);
         if (listOfMovieBox.isPresent()) {
             return listOfMovieBox.get();
         } else throw new RuntimeException(" No movie found for langauge" + language);

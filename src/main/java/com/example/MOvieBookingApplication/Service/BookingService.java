@@ -57,17 +57,17 @@ public class BookingService {
 
     }
 
-    public List<Booking> getUserBookings(Long userid){
-         return bookingRepository.findByUserId(userid);
+    public List<Booking> getUserBookings(Long userId){
+         return bookingRepository.findByUser_Id(userId);
     }
 
-    public List<Booking> getShowBookings(Long showid){
-        return bookingRepository.findByShowId(showid);
+    public List<Booking> getShowBookings(Long showId){
+        return bookingRepository.findByShow_Id(showId);
     }
 
 
-    public Booking confirmBooking ( Long  bookingid){
-          Booking booking = bookingRepository.findById(bookingid)             // method to get booking//
+    public Booking confirmBooking ( Long  bookingId){
+          Booking booking = bookingRepository.findById(bookingId)             // method to get booking//
                   .orElseThrow(()->new RuntimeException("Booking not Found"));
 
 

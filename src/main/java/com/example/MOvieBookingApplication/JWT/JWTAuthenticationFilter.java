@@ -11,12 +11,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -27,13 +28,22 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-       final  String authHeader= request.getHeader("Authorization");// to get header of token//
+
+        String path = request.getServletPath();
+        if (path.startsWith("/api/auth")) {
+            // Skip JWT filter for registration/login
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        final  String authHeader= request.getHeader("Authorization");// to get header of token//
        final String jwtToken;
        final String username;
 
        if(authHeader == null||  !authHeader.startsWith("Bearer")){
            filterChain.doFilter(request,response);
            return;
+           }
 
            // extrctoing jwt token frm header with sub string//
 
@@ -71,7 +81,5 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
           filterChain.doFilter(request,response);
        }
 
-
-
       }
-}
+
