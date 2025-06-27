@@ -39,7 +39,7 @@ public class BookingService {
              throw new RuntimeException(("seat Numbers and numbers must be the same"));
          }
 
-         validateDuplicateSeats(show.getId(),bookingDTO.getSeatNumbers() );
+        validateDuplicateSeats(show.getId(),bookingDTO.getSeatNumbers() );
 
          User user= userRepository.findById(bookingDTO.getUserId())
                  .orElseThrow(()->new RuntimeException("user not found"));
@@ -115,6 +115,7 @@ public class BookingService {
         return (show.getTheater().getTheaterCapacity()-bookedSeats)>= numberOfSeats;
 
      }
+
 
      public void validateDuplicateSeats(long showId, List<String> seatNumbers){
            Show show =showRepository.findById(showId)

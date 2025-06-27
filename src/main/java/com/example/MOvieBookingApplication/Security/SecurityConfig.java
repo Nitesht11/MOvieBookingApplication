@@ -55,15 +55,15 @@ public class SecurityConfig {
     public  PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
 }
-@Bean
+    @Bean
     public UserDetailsService userDetailsService() {
         return  new CustomUserDetailsService();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
-
-    return  config.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+            throws Exception{
+    return config.getAuthenticationManager();
 
     }
 }

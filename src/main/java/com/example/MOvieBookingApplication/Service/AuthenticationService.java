@@ -39,7 +39,8 @@ public class AuthenticationService {
         user.setEmail(registerRequestDTO.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
         user.setRoles(roles);
-         return userRepository.save(user);
+
+        return userRepository.save(user);
 
     }
 
