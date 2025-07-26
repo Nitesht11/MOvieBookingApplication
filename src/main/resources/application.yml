@@ -12,5 +12,5 @@ spring:
     show-sql: true
 
 jwt:
-  secret: aBHjrujfbs@$#kmndjd12kkfnrkrnrkms45DNKNNC
+  secret: 3df7#9kd^X@pL!m4Vr8eWzq1TbRuYc6FjK2HpLo9SaBvNmXt
   expiration: 3600000

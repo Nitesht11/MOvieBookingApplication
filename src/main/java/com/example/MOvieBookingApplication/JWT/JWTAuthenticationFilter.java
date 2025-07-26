@@ -44,7 +44,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
            filterChain.doFilter(request,response);
            return;
            }
-
            // extrctoing jwt token frm header with sub string//
 
            jwtToken= authHeader.substring(7);
@@ -59,8 +58,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                // validate the token
 
                if( jwtService.isTokenValid(jwtToken, userdetails)) {
-
-
                    // create the authen with roles it is admin or user//
 
                    List<SimpleGrantedAuthority> authorities = userdetails.getRoles().stream()
@@ -68,7 +65,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                            .collect(Collectors.toList());
 
                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userdetails, null ,authorities);
-
 
                    // set  Authen details
                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -79,6 +75,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
            }
 
           filterChain.doFilter(request,response);
+
        }
 
       }
