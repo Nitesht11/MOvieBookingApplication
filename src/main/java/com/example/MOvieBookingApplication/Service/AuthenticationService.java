@@ -32,7 +32,7 @@ public class AuthenticationService {
             throw new RuntimeException("user already register");
         }
         Set<String> roles = new HashSet<String>();
-        roles.add("Role_User");
+        roles.add("ROLE_USER");
 
         User user = new User();
         user.setUsername(registerRequestDTO.getUsername());
@@ -49,8 +49,8 @@ public class AuthenticationService {
             throw new RuntimeException("user already register");
         }
         Set<String> roles = new HashSet<String>();
-        roles.add("Role_User");
-        roles.add("Role_Admin");
+        roles.add("ROLE_ADMIN");
+        roles.add("ROLE_USER");
         User user = new User();
         user.setUsername(registerRequestDTO.getUsername());
         user.setEmail(registerRequestDTO.getEmail());

@@ -19,7 +19,7 @@ public class MovieController {
 
     @PostMapping("/addMovie")
 
-    @PreAuthorize("has Role('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity <Movie> addMovie (@RequestBody MovieDTO movieDTO) {
 
         return  ResponseEntity.ok(movieService.addMovie(movieDTO));
@@ -46,14 +46,13 @@ public class MovieController {
     }
 
     @PutMapping("/uptateMovie")
-    @PreAuthorize("has Role('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
 
     public  ResponseEntity<Movie> updateMovie (@PathVariable Long id, @RequestBody MovieDTO movieDTO){
          return  ResponseEntity.ok(movieService. updateMovie(id, movieDTO));
     }
     @DeleteMapping("/deleteMovie")
-    @PreAuthorize("has Role('ADMIN')")
-
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteMovie(@PathVariable Long id){
      movieService.deleteMovie(id);    // since return type is void thus call method is written above//
      return ResponseEntity.ok().build();
