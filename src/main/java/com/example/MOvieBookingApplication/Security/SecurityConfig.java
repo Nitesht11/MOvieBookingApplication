@@ -29,21 +29,21 @@ public class SecurityConfig {
     @Autowired
     private JWTAuthenticationFilter jwtAuthenticationFilter;
 @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http
-                .csrf(csrf-> csrf.disable())
-                .authorizeHttpRequests(auth->auth
-                        .requestMatchers("/api/auth/**").permitAll()  // this endpont means any 1 can register as user//
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated())
-                .sessionManagement(session -> session
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    http
+            .csrf(csrf-> csrf.disable())
+            .authorizeHttpRequests(auth->auth
+                    .requestMatchers("/api/auth/**").permitAll()  // this endpont means any 1 can register as user//
+                    .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                    .anyRequest().authenticated())
+            .sessionManagement(session -> session
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authenticationProvider(authenticationProvider())
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    }
-    @Bean
+    return http.build();
+}
+@Bean
     public  AuthenticationProvider authenticationProvider() {
 
         DaoAuthenticationProvider authenticationProvider= new DaoAuthenticationProvider();

@@ -1,5 +1,6 @@
 package com.example.MOvieBookingApplication.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,5 +24,7 @@ public class Movie {
 
     @OneToMany (mappedBy = "movie", fetch = FetchType.LAZY)
     // we dont want load the show when movie is loaded thus //
+
+    @JsonIgnore
     private List<Show> show;
 }

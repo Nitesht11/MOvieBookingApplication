@@ -61,7 +61,8 @@ public class JWTService {
             .subject((userDetails.getUsername()))
             .issuedAt(new Date(System.currentTimeMillis()))
             .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
-            .signWith(getSignInKey()).compact();
+            .signWith(getSignInKey())
+            .compact();
   }
 
   public boolean isTokenValid(String jwtToken, UserDetails userDetails) {

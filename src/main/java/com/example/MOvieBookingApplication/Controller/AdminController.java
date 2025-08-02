@@ -4,6 +4,7 @@ package com.example.MOvieBookingApplication.Controller;
 import com.example.MOvieBookingApplication.DTO.RegisterRequestDTO;
 import com.example.MOvieBookingApplication.Entity.User;
 import com.example.MOvieBookingApplication.Service.AuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/admin")
-@PreAuthorize(" hasRole ('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
+
+    @Autowired
     private AuthenticationService authenticationService;
 
     @PostMapping("/registerAdminUser")

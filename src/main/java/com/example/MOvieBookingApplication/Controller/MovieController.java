@@ -18,10 +18,8 @@ public class MovieController {
     private MovieService movieService;
 
     @PostMapping("/addMovie")
-
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity <Movie> addMovie (@RequestBody MovieDTO movieDTO) {
-
         return  ResponseEntity.ok(movieService.addMovie(movieDTO));
     }
 
@@ -29,7 +27,6 @@ public class MovieController {
      public ResponseEntity <List<Movie>>getAllMovies (){
         return  ResponseEntity.ok(movieService.getAllMovies());
     }
-
 
     @GetMapping("/getMovieByGenre")
     public ResponseEntity<List<Movie>> getMovieByGenre( @RequestParam String genre){
@@ -45,16 +42,16 @@ public class MovieController {
         return ResponseEntity.ok(movieService.getMoviesByTitle(name));
     }
 
-    @PutMapping("/uptateMovie")
+    @PutMapping("/updateMovie/{id}")
     @PreAuthorize("hasRole('ADMIN')")
 
     public  ResponseEntity<Movie> updateMovie (@PathVariable Long id, @RequestBody MovieDTO movieDTO){
          return  ResponseEntity.ok(movieService. updateMovie(id, movieDTO));
     }
-    @DeleteMapping("/deleteMovie")
+    @DeleteMapping("/deleteMovie/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteMovie(@PathVariable Long id){
-     movieService.deleteMovie(id);    // since return type is void thus call method is written above//
+     movieService.deleteMovie(id);                // since return type is void thus call method is written above//
      return ResponseEntity.ok().build();
     }
 }

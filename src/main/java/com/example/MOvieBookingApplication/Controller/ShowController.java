@@ -33,7 +33,7 @@ public class ShowController {
          return  ResponseEntity.ok(showService.getShowByTheater(id));
     }
 
-    @PutMapping("/ updateShow/{id}")
+    @PutMapping("/updateShow/{id}")
     public ResponseEntity<Show> updateShow( @PathVariable Long id, @RequestBody  ShowDTO showDTO){
          return ResponseEntity.ok(showService.updateShow(id,showDTO));
     }

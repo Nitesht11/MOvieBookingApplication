@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/theater")
 public class TheaterController {
+
      @Autowired
     private TheaterService theaterService;
      @PostMapping ("/addTheater")
@@ -24,19 +25,17 @@ public class TheaterController {
      public ResponseEntity<List<Theater>> getTheaterByLocation(@RequestParam String location){
          return   ResponseEntity.ok(theaterService.getTheaterByLocation(location));
      }
-     @PutMapping("/updateTheater{id}")
+     @PutMapping("/updateTheater/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-     public ResponseEntity <Theater> updateTheater( @RequestParam Long id, @PathVariable TheaterDTO theaterDTO){
+     public ResponseEntity <Theater> updateTheater( @PathVariable Long id, @RequestBody TheaterDTO theaterDTO){
          return ResponseEntity.ok(theaterService.updateTheater(id, theaterDTO));
      }
 
-    @DeleteMapping("/deleteTheater{id}")
+    @DeleteMapping("/deleteTheater/{id}")
     @PreAuthorize("hasRole('ADMIN')")
      public  ResponseEntity <Void> deleteTheater (@PathVariable Long id){
           theaterService.deleteTheater(id);
        return  ResponseEntity.ok().build();
 
      }
-
-
 }

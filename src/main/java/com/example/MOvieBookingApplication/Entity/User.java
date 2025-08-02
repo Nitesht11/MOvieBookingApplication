@@ -23,17 +23,17 @@ public class User implements UserDetails {
     private   String email;
     private    String  password;
 
-    @ElementCollection(fetch = FetchType.EAGER)  // because we want role everytime user is used//
+    @ElementCollection(fetch = FetchType.EAGER)               // because we want role everytime user is used//
     private Set<String> roles;
 
-    @OneToMany (fetch = FetchType.EAGER)
-    @JoinColumn(name= "booking_id",nullable = false )
+    @OneToMany (mappedBy = "user",fetch = FetchType.EAGER)
+//    @JoinColumn(name= "booking_id",nullable = false )
     private List<Booking> booking ;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {// get authority meth converts role var in authority //
         return roles.stream ()
-                .map(SimpleGrantedAuthority::new)
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .collect(Collectors.toList());
     }
 
